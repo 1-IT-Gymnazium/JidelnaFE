@@ -2,8 +2,10 @@
 	import {onDestroy, onMount} from 'svelte'
 	import {browser} from '$app/environment'
 
+	let isicId = ''
 	let name = ''
 	let lunch = ''
+	let data = ''
 
 	const load = async (id) => {
 		try {
@@ -26,8 +28,14 @@
 	})
 
 	const handeKeyDown = async (e) => {
-		console.log(e.key)
-		const data = await load(e.key)
+		if (e.key === 'Enter') {
+			data = await load(isicId)
+			isicId = ''
+		} else {
+			isicId += e.key
+			console.log(isicId)
+		}
+
 		if (data) {
 			// If data is retrieved successfully, update the name variable
 			name = data.name;
