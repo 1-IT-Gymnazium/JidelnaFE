@@ -9,3 +9,11 @@ export function addUserAndLunch(newUser, newLunch, newid) {
 		return [...users, { name: newUser, lunch: newLunch, id: newid}]
 	})
 }
+
+export function getUserById(userId) {
+	let user = null;
+	userInfoStore.subscribe(users => {
+		user = users.find(user => user.id === userId);
+	})();
+	return user;
+}

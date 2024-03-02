@@ -2,15 +2,16 @@
 	import {onDestroy, onMount} from 'svelte'
 	import {browser} from '$app/environment'
 	import { load } from './ApiService.js';
-	// import Table from './Table.svelte';
+	import Table from './Table.svelte';
 	import { userInfoStore } from './Store.js';
-	import { addUserAndLunch } from './Store.js';
+	import { addUserAndLunch, getUserById } from './Store.js';
 
 	let isicId = ''
 	let name = ''
 	let lunch = ''
 	let data = ''
 	let userExists = false
+	let userWithLunchOut = ''
 
 
 	onMount(() => {
@@ -38,11 +39,12 @@
 				})
 
 				if (userExists === false) {
-					addUserAndLunch(name, lunch, isicId)
-					console.log(userExists)
+					addUserAndLunch(name, lunch, isicId, userExists)
+					userWithLunchOut = null
 				} else {
 					lunch = lunch + ', obded byl vsak jiz vydan.'
-					console.log(userExists)
+					userWithLunchOut =  getUserById(isicId)
+					console.log(userWithLunchOut)
 				}
 				userExists = false
 				isicId = ''
@@ -61,6 +63,6 @@
 	<h2>Cislo obeda: {lunch}</h2>
 </div>
 
-<!--{#if data}-->
-<!--<Table />-->
-<!--{/if}-->
+{#if data}
+<Table user={userWithLunchOut}/>
+{/if}
