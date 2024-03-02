@@ -1,56 +1,8 @@
 <script>
-	import {onDestroy, onMount} from 'svelte'
-	import {browser} from '$app/environment'
-
-	let isicId = ''
-	let name = ''
-	let lunch = ''
-	let data = ''
-
-	const load = async (id) => {
-		try {
-			const response = await fetch(`http://127.0.0.1:8000/users/${id}`)
-			return await response.json()
-		} catch (error) {
-			console.error('Error fetching data:', error)
-			return null
-		}
-	}
-
-	onMount(() => {
-		if(!browser) return
-		window.addEventListener('keydown', handeKeyDown)
-	})
-
-	onDestroy(() =>{
-		if(!browser) return
-		window.removeEventListener('keydown', handeKeyDown)
-	})
-
-	const handeKeyDown = async (e) => {
-		if (e.key === 'Enter') {
-			data = await load(isicId)
-			isicId = ''
-		} else {
-			isicId += e.key
-			console.log(isicId)
-		}
-
-		if (data) {
-			// If data is retrieved successfully, update the name variable
-			name = data.name;
-			lunch = data.lunches[0].type_of_lunch
-
-		} else {
-			name = ''
-			lunch = ''
-		}
-	}
+	import Table from './Table.svelte';
+	import Info from './Info.svelte';
 </script>
 
 
 
-<div>
-	<h1>Jmeno: {name}</h1>
-	<h2>Cislo obeda: {lunch}</h2>
-</div>
+<Info/>
