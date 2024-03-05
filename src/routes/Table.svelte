@@ -1,8 +1,6 @@
 <script>
-import { userInfoStore } from './Store.js';
+export let users
 export let user
-
-console.log(user)
 
 </script>
 
@@ -14,16 +12,16 @@ console.log(user)
 	</tr>
 	</thead>
 	<tbody>
-	{#each $userInfoStore as {name, lunch, id}}
-		{#if user && user.id == id}
+	{#each users as user_}
+		{#if user_.id == user.id}
 			<tr>
-				<td class="highlighted">{name}</td>
-				<td class="highlighted">{lunch}</td>
+				<td class="highlighted">{user.name}</td>
+				<td class="highlighted">{user.lunches[0].type_of_lunch}</td>
 			</tr>
 		{:else}
 			<tr>
-				<td>{name}</td>
-				<td>{lunch}</td>
+				<td>{user_.name}</td>
+				<td>{user_.lunches[0].type_of_lunch}</td>
 			</tr>
 		{/if}
 	{/each}

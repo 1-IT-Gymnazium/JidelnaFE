@@ -1,17 +1,17 @@
 <script>
 	import {onDestroy, onMount} from 'svelte'
 	import {browser} from '$app/environment'
-	import { load } from './ApiService.js';
+	import { loadUser, loadUsers, loadUsersWithLunchOut } from './ApiService.js';
 	import Table from './Table.svelte';
-	import { userInfoStore } from './Store.js';
-	import { addUserAndLunch, getUserById } from './Store.js';
 
 	let isicId = ''
 	let name = ''
 	let lunch = ''
 	let data = ''
-	let userExists = false
-	let userWithLunchOut = ''
+	let typeOfLunch = ''
+	let susUsers = ''
+	let users = ''
+	let susUser = ''
 
 
 	onMount(() => {
@@ -26,32 +26,44 @@
 
 	const handleIsic = async (e) => {
 		if (e.key === 'Enter') {
-			data = await load(isicId)
 
-			if (data) {
-				name = data.name;
-				lunch = data.lunches[0].type_of_lunch
-
-				$userInfoStore.forEach(user => {
-					if(user.id === isicId) {
-						userExists = true
+			data = await loadUser(isicId)
+			users = await loadUsers()
+			susUsers = await loadUsersWithLunchOut()
+			susUser = ''
+			console.log(susUsers.length)
+			if (susUsers.length > 0) {
+				susUsers.forEach(user => {
+					if (user.id === isicId) {
+						susUser = user
 					}
 				})
+			}
 
-				if (userExists === false) {
-					addUserAndLunch(name, lunch, isicId, userExists)
-					userWithLunchOut = null
-				} else {
-					lunch = lunch + ', obded byl vsak jiz vydan.'
-					userWithLunchOut =  getUserById(isicId)
-					console.log(userWithLunchOut)
+			if (data) {
+
+				name = data.name;
+				lunch = data.lunches[0]
+				typeOfLunch = lunch.type_of_lunch
+
+				if (lunch.lunch_out === 2) {
+					typeOfLunch = typeOfLunch + ', obded byl vsak jiz vydan.'
 				}
-				userExists = false
+
 				isicId = ''
+
+			} else {
+
+				name = ''
+				lunch = ''
+				typeOfLunch = ''
+
 			}
 		} else {
+
 			isicId += e.key
 			console.log(isicId)
+
 		}
 	}
 </script>
@@ -60,9 +72,9 @@
 
 <div>
 	<h1>Jmeno: {name}</h1>
-	<h2>Cislo obeda: {lunch}</h2>
+	<h2>Cislo obeda: {typeOfLunch}</h2>
 </div>
 
 {#if data}
-<Table user={userWithLunchOut}/>
+<Table users={users} user={susUser}/>
 {/if}
