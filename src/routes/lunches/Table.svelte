@@ -13,17 +13,10 @@ export let user
 	</thead>
 	<tbody>
 	{#each users as user_}
-		{#if user_.id == user.id}
-			<tr>
-				<td class="highlighted">{user.name}</td>
-				<td class="highlighted">{user.lunches[0].type_of_lunch}</td>
-			</tr>
-		{:else}
-			<tr>
-				<td>{user_.name}</td>
-				<td>{user_.lunches[0].type_of_lunch}</td>
-			</tr>
-		{/if}
+		<tr>
+			<td class:selected={user_.id === user.id}>{user_.name}</td>
+			<td class:selected={user_.id === user.id}>{user_.lunches[0].type_of_lunch}</td>
+		</tr>
 	{/each}
 	</tbody>
 </table>
@@ -34,7 +27,7 @@ export let user
         border-collapse: collapse;
     }
 
-    .highlighted {
+    td.selected {
         background: red; /* Change to whatever style you want */
     }
 </style>

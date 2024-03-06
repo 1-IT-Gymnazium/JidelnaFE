@@ -20,7 +20,17 @@ export const loadUsers = async () => {
 
 export const loadUsersWithLunchOut = async () => {
 	try {
-		const response = await fetch(`http://127.0.0.1:8000/users`)
+		const response = await fetch(`http://127.0.0.1:8000/usersWithLunchOut`)
+		return await response.json()
+	} catch (error) {
+		console.error('Error fetching data:', error)
+		return null
+	}
+}
+
+export const uploadUser = async (id, name) => {
+	try {
+		const response = await fetch(`http://127.0.0.1:8000/create/user/${id}/${name}`)
 		return await response.json()
 	} catch (error) {
 		console.error('Error fetching data:', error)

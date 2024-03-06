@@ -1,7 +1,7 @@
 <script>
 	import {onDestroy, onMount} from 'svelte'
 	import {browser} from '$app/environment'
-	import { loadUser, loadUsers, loadUsersWithLunchOut } from './ApiService.js';
+	import { loadUser, loadUsers, loadUsersWithLunchOut } from '../ApiService.js';
 	import Table from './Table.svelte';
 
 	let isicId = ''
@@ -31,7 +31,8 @@
 			users = await loadUsers()
 			susUsers = await loadUsersWithLunchOut()
 			susUser = ''
-			console.log(susUsers.length)
+
+			// if user tries to scan isic second time, it will show in the table of scanned users
 			if (susUsers.length > 0) {
 				susUsers.forEach(user => {
 					if (user.id === isicId) {
@@ -47,7 +48,7 @@
 				typeOfLunch = lunch.type_of_lunch
 
 				if (lunch.lunch_out === 2) {
-					typeOfLunch = typeOfLunch + ', obded byl vsak jiz vydan.'
+					typeOfLunch ='Oběd byl již vydán.'
 				}
 
 				isicId = ''
@@ -60,10 +61,8 @@
 
 			}
 		} else {
-
 			isicId += e.key
 			console.log(isicId)
-
 		}
 	}
 </script>
