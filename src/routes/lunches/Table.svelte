@@ -28,6 +28,6 @@ export let user
     }
 
     td.selected {
-        background: red; /* Change to whatever style you want */
+        background: red;
     }
 </style>
