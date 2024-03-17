@@ -1,5 +1,5 @@
 import adapter from '@sveltejs/adapter-auto';
-import { defineConfig } from 'vite';
+import preprocess from 'svelte-preprocess';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -11,5 +11,13 @@ const config = {
 	}
 };
 
+const preprocessOptions = {
+	scss: {
+		// SCSS preprocess options can be added here
+	},
+};
 
-export default config;
+export default {
+	...config,
+	preprocess: preprocess(preprocessOptions)
+};

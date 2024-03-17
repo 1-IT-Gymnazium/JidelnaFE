@@ -1,3 +1,5 @@
+import {countOut, countRest} from './lunches/count.js';
+
 export const loadUser = async (id) => {
 	try {
 		const response = await fetch(`http://127.0.0.1:8000/users/${id}`)
@@ -27,6 +29,27 @@ export const loadUsersWithLunchOut = async () => {
 		return null
 	}
 }
+
+export const getLunchesOut = async () => {
+	try {
+		const response = await fetch(`http://127.0.0.1:8000/lunches/count/out`)
+		return await response.json()
+	} catch (error) {
+		console.error('Error fetching data:', error)
+		return null
+	}
+}
+
+export const getLunchesRest = async () => {
+	try {
+		const response = await fetch(`http://127.0.0.1:8000/lunches/count/rest`)
+		return await response.json()
+	} catch (error) {
+		console.error('Error fetching data:', error)
+		return null
+	}
+}
+
 
 
 export const uploadUser = async (id, name) => {

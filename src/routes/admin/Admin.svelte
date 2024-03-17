@@ -9,7 +9,6 @@
 
 	async function handleClick () {
 		response = await uploadUser(id, name)
-		console.log(response)
 	}
 	const logout = () => {
 		user.update(() => null);
