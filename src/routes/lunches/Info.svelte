@@ -8,8 +8,9 @@
 	import { loadUser, loadUsers, loadUsersWithLunchOut, getLunchesRest, getLunchesOut } from '../ApiService.js';
 	import Table from './Table.svelte';
 	import Count from './Count.svelte';
-	import '../../styles/global.css'
+	import '../../styles/global.css';
 	import { countOut, countRest } from './count.js';
+
 
 	let isicId = '';
 	let name = '';
@@ -21,11 +22,15 @@
 	let susUser = '';
 	let lunchOut = 0;
 	let countR = 0;
-	let countO = 0
+	let countO = 0;
+	let userScaned = false;
+
+
 
 	onMount(() => {
 		if (!browser) return;
 		window.addEventListener('keydown', handleIsic);
+		loadTableData()
 	});
 
 	onDestroy(() => {
@@ -33,52 +38,61 @@
 		window.removeEventListener('keydown', handleIsic);
 	});
 
+	// onMount(loadTableData)
+	async function loadTableData() {
+		users = await loadUsers();
+		countR = await getLunchesRest();
+		countO = await getLunchesOut();
+		countRest.set(countR);
+		countOut.set(countO);
+	}
+
 	const handleIsic = async (e) => {
 		if (e.key === 'Enter') {
 
 			data = await loadUser(isicId);
 			users = await loadUsers();
 			susUsers = await loadUsersWithLunchOut();
-			countR = await getLunchesRest()
-			countO = await getLunchesOut()
+			countR = await getLunchesRest();
+			countO = await getLunchesOut();
 
-			countRest.set(countR)
-			countOut.set(countO)
+			countRest.set(countR);
+			countOut.set(countO);
 			susUser = '';
 
-			// if user tries to scan isic second time, it will show in the table of scanned users
-			if (susUsers.length > 0) {
-				susUsers.forEach(user => {
-					if (user.id === isicId) {
-						susUser = user;
-					}
-				});
-			}
+			if (data !== 0) {
 
-			if (data) {
+				// if user tries to scan isic second time, it will show in the table of scanned users
+				if (susUsers.length > 0) {
+					susUsers.forEach(user => {
+						if (user.id === isicId) {
+							susUser = user;
+							userScaned = false;
+						}
+					});
+				}
+				if (susUser === '') {
+					userScaned = true;
+					susUser = data;
+				}
 
 				name = data.name;
 				lunch = data.lunches[0];
 				typeOfLunch = lunch.type_of_lunch;
+				lunchOut = 0
 
 				if (lunch.lunch_out === 2) {
 					lunchOut = 1;
 				}
-				else if (typeOfLunch === 0) {
+				if (typeOfLunch === 0) {
 					typeOfLunch = 'Nemá obědnaný oběd.';
-					lunchOut = 0
-				} else {
-					lunchOut = 0
+					lunchOut = 0;
 				}
 
 				isicId = '';
 
 			} else {
-				lunchOut = 0;
-				name = '';
-				lunch = '';
-				typeOfLunch = '';
-
+				isicId = '';
 			}
 		} else {
 			isicId += e.key;
@@ -91,7 +105,7 @@
 <div class="grid-container">
 
 	<div class="item-1 item grid-container-info">
-		{#if (data)}
+		{#if data}
 			<div class="item-info-1 item-info">
 
 				<div class="item-lunchout">
@@ -103,7 +117,11 @@
 				<p class="item-name">{name}</p>
 
 			</div>
-		{:else }
+		{:else if data === 0}
+			<div class="item-info-3 item-info">
+				<p>Žák neexistuje</p>
+			</div>
+		{:else}
 			<div class="item-info-2 item-info">
 				<i class="fi fi-br-credit-card"></i>
 				<p>Čeká se na přiložení ISIC karty.</p>
@@ -117,8 +135,8 @@
 		</div>
 
 		<div class="item-table-2">
-			{#if data}
-				<Table users={users} user={susUser} />
+			{#if data === 0 || data || users}
+				<Table users={users} user={susUser} userScaned={userScaned} />
 			{:else}
 				<div class="static">
 					<i class="fi fi-br-list"></i>
@@ -129,7 +147,7 @@
 	</div>
 
 	<div class="item-3 item">
-		<Count/>
+		<Count />
 	</div>
 
 </div>
@@ -208,11 +226,16 @@
       .item-info-2 {
         font-weight: 600;
         font-size: 2vh;
-        .fi, .fi::before{
+
+        .fi, .fi::before {
           margin-bottom: 1vh;
           font-size: 4vh;
         }
       }
+			.item-info-3 {
+				font-size: 5vh;
+				font-weight: 500;
+			}
 
       .item-info {
         justify-self: center;
@@ -230,23 +253,26 @@
         border-bottom: 1px solid #58595a;
         padding: 2vh 0 2vh 0;
       }
-			.item-table-2 {
-				max-height: 100%;
+
+      .item-table-2 {
+        max-height: 100%;
         overflow-y: auto;
-				.static {
-					height: 100%;
-					width: 100%;
-					display: flex;
-					flex-direction: column;
-					justify-content: center;
-					align-items: center;
-					.fi {
-						margin-bottom: 1vh;
-						font-size: 3vh;
-						color: #01b1ef;
-					}
-				}
-			}
+
+        .static {
+          height: 100%;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+
+          .fi {
+            margin-bottom: 1vh;
+            font-size: 3vh;
+            color: #01b1ef;
+          }
+        }
+      }
     }
 
   }
