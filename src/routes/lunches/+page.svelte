@@ -1,6 +1,6 @@
 <script>
-	import Info from './Info.svelte';
-	import Header from './Header.svelte';
+	import Info from '../../components/Info.svelte';
+	import Header from '../../components/Header.svelte';
 </script>
 
 <body>

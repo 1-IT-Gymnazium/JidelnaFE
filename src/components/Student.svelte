@@ -1,7 +1,8 @@
 <script>
-	import Header from '../Header.svelte';
+	import Header from './AdminHeader.svelte';
 	import AddUser from './AddUser.svelte';
 	import RemoveStudent from './RemoveStudent.svelte';
+
 </script>
 
 <div class="container">

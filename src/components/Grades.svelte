@@ -1,16 +1,14 @@
 <script>
-	import Header from '../Header.svelte';
+	import Header from './AdminHeader.svelte';
 	import RemoveGrade from './RemoveGrade.svelte';
-
 </script>
 
 
 
 <div class="container">
 	<div class="item-1">
-		<Header state="Student" />
+		<Header />
 	</div>
-	<hr>
 	<div class="item-3">
 		<RemoveGrade />
 	</div>
@@ -21,11 +19,9 @@
         margin: 4vh;
     }
     .item-3 {
+				margin-top: 4vh;
         border-left: 2px solid #fa3054;
     }
-    hr {
-        margin: 3vh;
-        border: 1px solid #c5c5c5;
-    }
+
 
 </style>

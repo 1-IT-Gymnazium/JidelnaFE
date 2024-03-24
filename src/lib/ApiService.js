@@ -1,4 +1,4 @@
-import {countOut, countRest} from './lunches/count.js';
+import {countOut, countRest} from './count.js';
 
 export const loadUser = async (id) => {
 	try {
@@ -94,6 +94,16 @@ export const deleteGrade = async (grade) => {
 		const response = await fetch(`http://127.0.0.1:8000/user/delete/by/grade/${grade}`, {
 			method: 'DELETE'
 		})
+		return await response.json()
+	} catch (error) {
+		console.error('Error fetching data:', error)
+		return null
+	}
+}
+
+export const getUserName= async (id) => {
+	try {
+		const response = await fetch(`http://127.0.0.1:8000/user/name/${id}`)
 		return await response.json()
 	} catch (error) {
 		console.error('Error fetching data:', error)

@@ -1,5 +1,5 @@
 <script>
-	import user from './user.js';
+	import user from '$lib/user.js';
 
 	let name = '';
 	let password = '';
@@ -39,7 +39,7 @@
 	<div class="flex-container-2">
 
 		<div class="header">
-			<img class="item-1" src="../../../static/1itglogo.png" alt="ITlogo">
+			<img class="item-1" src="../../static/1itglogo.png" alt="ITlogo">
 			<p class="item-2">Přihlášení do <br> administrátorské sekce</p>
 		</div>
 
@@ -74,7 +74,7 @@
     position: absolute;
     height: 100%;
     width: 100%;
-    background-image: url("../../../static/1itBudova.jpeg");
+    background-image: url("../../static/1itBudova.jpeg");
     filter: blur(15px);
     z-index: -1;
   }

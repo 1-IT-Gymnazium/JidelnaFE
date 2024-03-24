@@ -1,6 +1,6 @@
 <script>
-	import user from './user.js';
-	import page from './page.js';
+	import user from '$lib/user.js';
+	import page from '$lib/page.js';
 
 	const logout = () => {
 		user.update(() => null);
@@ -18,7 +18,7 @@
 
 	<div class="grid-container-1">
 		<div class="item-1-1">
-			<img src="../../../static/1itglogo.png" alt="ITlogo">
+			<img src="../../static/1itglogo.png" alt="ITlogo">
 		</div>
 		<div class="item-1-2">
 			<p>Administrátorská <br> sekce</p>

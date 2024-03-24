@@ -21,7 +21,7 @@
 	</div>
 
 	<div class="grid-end">
-			<img class="item-3" src="../../../static/1itglogo.png" alt="ITlogo">
+			<img class="item-3" src="../../static/1itglogo.png" alt="ITlogo">
 	</div>
 
 </div>

@@ -5,11 +5,12 @@
 <script>
 	import { onDestroy, onMount } from 'svelte';
 	import { browser } from '$app/environment';
-	import { loadUser, loadUsers, loadUsersWithLunchOut, getLunchesRest, getLunchesOut } from '../ApiService.js';
+	import { loadUser, loadUsers, loadUsersWithLunchOut, getLunchesRest, getLunchesOut } from '$lib/ApiService.js';
 	import Table from './Table.svelte';
 	import Count from './Count.svelte';
-	import '../../styles/global.css';
-	import { countOut, countRest } from './count.js';
+	import '../styles/global.css';
+	import { countOut, countRest } from '$lib/count.js';
+	import TableStatic from './TableStatic.svelte';
 
 
 	let isicId = '';
@@ -26,11 +27,10 @@
 	let userScaned = false;
 
 
-
 	onMount(() => {
 		if (!browser) return;
 		window.addEventListener('keydown', handleIsic);
-		loadTableData()
+		loadTableData();
 	});
 
 	onDestroy(() => {
@@ -38,7 +38,6 @@
 		window.removeEventListener('keydown', handleIsic);
 	});
 
-	// onMount(loadTableData)
 	async function loadTableData() {
 		users = await loadUsers();
 		countR = await getLunchesRest();
@@ -79,7 +78,7 @@
 				name = data.name;
 				lunch = data.lunches[0];
 				typeOfLunch = lunch.type_of_lunch;
-				lunchOut = 0
+				lunchOut = 0;
 
 				if (lunch.lunch_out === 2) {
 					lunchOut = 1;
@@ -130,6 +129,7 @@
 	</div>
 
 	<div class="item-2 item grid-container-table">
+
 		<div class="item-table-1">
 			<p>Již vydané obědy</p>
 		</div>
@@ -138,10 +138,7 @@
 			{#if data === 0 || data || users}
 				<Table users={users} user={susUser} userScaned={userScaned} />
 			{:else}
-				<div class="static">
-					<i class="fi fi-br-list"></i>
-					<p>Seznam je prázdný</p>
-				</div>
+				<TableStatic />
 			{/if}
 		</div>
 	</div>
@@ -191,7 +188,6 @@
       grid-column: 3;
       grid-row: 3;
       margin: 1.5vh 0 0 1.5vh;
-
     }
 
     .grid-container-info {
@@ -232,10 +228,11 @@
           font-size: 4vh;
         }
       }
-			.item-info-3 {
-				font-size: 5vh;
-				font-weight: 500;
-			}
+
+      .item-info-3 {
+        font-size: 5vh;
+        font-weight: 500;
+      }
 
       .item-info {
         justify-self: center;
@@ -257,21 +254,6 @@
       .item-table-2 {
         max-height: 100%;
         overflow-y: auto;
-
-        .static {
-          height: 100%;
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-
-          .fi {
-            margin-bottom: 1vh;
-            font-size: 3vh;
-            color: #01b1ef;
-          }
-        }
       }
     }
 

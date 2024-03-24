@@ -1,15 +1,24 @@
 <script>
-	import '../../../styles/global.css';
-	import { uploadUser } from '../../ApiService.js';
+	import '../styles/global.css';
+	import { uploadUser } from '$lib/ApiService.js';
+  import Notification from './Notification.svelte';
+	import { writable } from 'svelte/store';
 
 	let id = '';
 	let name = '';
 	let grade = '';
 	let response = '';
 
+	const notifications = writable([]);
+
+	function addNotification(message, type) {
+		notifications.update(arr => [...arr, { message, type }]);
+	}
+
 
 	async function handleClick() {
 		response = await uploadUser(id, name, grade);
+		addNotification(`${name} úspěšně přidán`, 'success')
 		console.log(response);
 	}
 </script>
@@ -35,6 +44,15 @@
 			Přídat</button>
 	</div>
 </div>
+
+{#each $notifications as notification, index}
+	<Notification
+		key={index}
+		message={notification.message}
+		type={notification.type}
+		on:remove={() => notifications.update(arr => arr.filter((_, i) => i !== index))}
+	/>
+{/each}
 
 
 <style lang="scss">

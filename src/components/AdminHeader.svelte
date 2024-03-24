@@ -1,10 +1,10 @@
 <script>
-	import { getUsersCount } from '../ApiService.js';
+	import { getUsersCount } from '$lib/ApiService.js';
 	import { onMount } from 'svelte';
-	import '../../styles/global.css';
-
+	import '../styles/global.css';
+	import page from '$lib/page.js';
 	let count = 0;
-	export let state;
+
 
 	onMount(() => {
 		loadCount();
@@ -23,7 +23,7 @@
 
 <div class="flex-container">
 	<div class="item-1 item">
-		{#if state === "Student"}
+		{#if $page === "Žáci"}
 			<p>Žáci v systému</p>
 		{:else}
 			<p>Třídy v systému</p>

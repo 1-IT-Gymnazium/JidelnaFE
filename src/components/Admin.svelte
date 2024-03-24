@@ -1,9 +1,9 @@
 <script>
-	import '../../styles/global.css';
+	import '../styles/global.css';
 	import SideBar from './SideBar.svelte';
-	import Student from './Student/Student.svelte';
-	import page from './page.js';
-	import Grades from './Grade/Grades.svelte';
+	import Student from './Student.svelte';
+	import page from '$lib/page.js';
+	import Grades from './Grades.svelte';
 
 	$: whatPage = $page
 

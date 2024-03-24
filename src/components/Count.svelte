@@ -1,5 +1,5 @@
 <script>
-	import { countOut, countRest } from './count.js';
+	import { countOut, countRest } from '$lib/count.js';
 
 	$: countLunchesRest = $countRest
 	$: countLunchesOut = $countOut

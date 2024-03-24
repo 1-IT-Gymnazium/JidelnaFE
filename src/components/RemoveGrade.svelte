@@ -1,6 +1,9 @@
 <script>
-	import '../../../styles/global.css';
-	import { deleteGrade } from '../../ApiService.js';
+	import '../styles/global.css';
+	import { deleteGrade } from '$lib/ApiService.js';
+	import Modal from './Modal.svelte';
+	let showModal = false;
+
 
 	let grade = '';
 
@@ -23,12 +26,15 @@
 	</div>
 
 	<div class="item-5 item">
-		<button on:click={handleClick}>
+		<button on:click={() => {showModal = true}}>
 			<i class="fi fi-br-delete"></i>
 			Odebrat</button>
 	</div>
 </div>
 
+<Modal bind:showModal data={grade}>
+	<p>Odstranit třídu: {grade}</p>
+</Modal>
 
 <style lang="scss">
   .grid-container {

@@ -1,16 +1,20 @@
 <script>
-	import '../../../styles/global.css';
-	import { deletUser } from '../../ApiService.js';
+	import '../styles/global.css';
+	import { getUserName } from '$lib/ApiService.js';
+	import Modal from './Modal.svelte';
+	let showModal = false;
 
 	let id = '';
 
 	let response = '';
 
+	let userName = ''
 
-	async function handleClick() {
-		response = await deletUser(id);
-		console.log(response);
+	async function getName() {
+		response = await getUserName(id)
+		userName = response
 	}
+
 </script>
 
 
@@ -23,11 +27,15 @@
 	</div>
 
 	<div class="item-5 item">
-		<button on:click={handleClick}>
+		<button on:click={() => {showModal = true}} on:click={getName}>
 			<i class="fi fi-br-delete"></i>
 			Odebrat</button>
 	</div>
 </div>
+
+<Modal bind:showModal data={id} name={userName}>
+	<p>Odstranit: {userName}</p>
+</Modal>
 
 
 <style lang="scss">
