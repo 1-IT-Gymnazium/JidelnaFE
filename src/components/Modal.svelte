@@ -15,7 +15,7 @@
 
 	async function clickDeleteUser() {
 		response = await deletUser(data);
-		addNotification(`${name} úspěšně odebrán`, 'success')
+		addNotification(`${response} úspěšně odebrán`, 'success')
 		console.log(response);
 	}
 	async function clickDeleteGrade() {
