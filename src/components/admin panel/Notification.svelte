@@ -34,4 +34,8 @@
 			background-color: #46bf7f;
 	}
 
+	.wrong {
+      background-color: #fb2d55;
+	}
+
 </style>

@@ -8,7 +8,7 @@
 	import { loadUser, loadUsers, loadUsersWithLunchOut, getLunchesRest, getLunchesOut } from '$lib/ApiService.js';
 	import Table from './Table.svelte';
 	import Count from './Count.svelte';
-	import '../styles/global.css';
+	import '../../styles/global.css';
 	import { countOut, countRest } from '$lib/count.js';
 	import TableStatic from './TableStatic.svelte';
 
@@ -50,6 +50,7 @@
 		if (e.key === 'Enter') {
 
 			data = await loadUser(isicId);
+
 			users = await loadUsers();
 			susUsers = await loadUsersWithLunchOut();
 			countR = await getLunchesRest();
@@ -102,7 +103,6 @@
 
 
 <div class="grid-container">
-
 	<div class="item-1 item grid-container-info">
 		{#if data}
 			<div class="item-info-1 item-info">
@@ -258,6 +258,4 @@
     }
 
   }
-
-
 </style>

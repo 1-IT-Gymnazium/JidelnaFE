@@ -1,21 +1,21 @@
 <script>
-	import Header from './AdminHeader.svelte';
-	import AddUser from './AddUser.svelte';
-	import RemoveStudent from './RemoveStudent.svelte';
-
+	import Header from './Header.svelte';
+	import RemoveGrade from './removing components/RemoveGrade.svelte';
+	import FileDrop from './adding components/AddFile.svelte';
 </script>
+
+
 
 <div class="container">
 	<div class="item-1">
-		<Header state="Student" />
+		<Header />
 	</div>
-
 	<div class="item-2">
-		<AddUser />
+		<FileDrop />
 	</div>
 	<hr>
 	<div class="item-3">
-		<RemoveStudent />
+		<RemoveGrade />
 	</div>
 </div>
 
@@ -32,10 +32,10 @@
     .item-3 {
         border-left: 2px solid #fa3054;
     }
-		hr {
-				margin: 3vh;
+    hr {
+        margin: 3vh;
         border: 1px solid #c5c5c5;
-		}
+    }
+
 
 </style>
-

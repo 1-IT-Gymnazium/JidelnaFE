@@ -1,3 +1,7 @@
+<script>
+	import '../styles/global.css';
+</script>
+
 <div class="bg-image"></div>
 
 <div class="flex-container">

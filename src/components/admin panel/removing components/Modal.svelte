@@ -1,26 +1,34 @@
 <script>
 	import { deletUser, deleteGrade } from '$lib/ApiService.js';
-	import '../styles/global.css';
+	import '../../../styles/global.css';
 	import page from '$lib/page.js';
-	import Notification from './Notification.svelte'
+	import Notification from '../Notification.svelte'
 	import { writable } from 'svelte/store';
 
 
 	$: whatPage = $page
 	export let showModal; // boolean
 	export let data;
-	export let name;
 
 	let response = '';
 
 	async function clickDeleteUser() {
 		response = await deletUser(data);
-		addNotification(`${response} úspěšně odebrán`, 'success')
+		if (response) {
+			addNotification(`Žák ${response} úspěšně odebrán.`, 'success')
+		} else {
+			addNotification(`Žáka ${response} se nepodařilo odebrat.`, 'wrong')
+		}
 		console.log(response);
 	}
 	async function clickDeleteGrade() {
 		response = await deleteGrade(data);
-		addNotification(`třída ${data}, byla úspěšně odebrána`, 'success')
+
+		if (response) {
+			addNotification(`Třída ${data} byla odebrána.`, 'success')
+		} else {
+			addNotification(`Třídu ${data} se nepodařilo odebrat.`, 'wrong')
+		}
 		console.log(response);
 	}
 

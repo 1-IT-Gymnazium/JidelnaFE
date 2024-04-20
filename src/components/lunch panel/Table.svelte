@@ -9,8 +9,6 @@
 </script>
 
 
-
-
 <table>
 	<tbody>
 	{#if users}

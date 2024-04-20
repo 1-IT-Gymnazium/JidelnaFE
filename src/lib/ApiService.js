@@ -1,8 +1,6 @@
-import {countOut, countRest} from './count.js';
-
 export const loadUser = async (id) => {
 	try {
-		const response = await fetch(`http://127.0.0.1:8000/user/${id}`)
+		const response = await fetch(`http://127.0.0.1:8000/users/${id}`)
 		return await response.json()
 	} catch (error) {
 		console.error('Error fetching data:', error)
@@ -12,7 +10,7 @@ export const loadUser = async (id) => {
 
 export const loadUsers = async () => {
 	try {
-		const response = await fetch(`http://127.0.0.1:8000/users/All`)
+		const response = await fetch(`http://127.0.0.1:8000/users/lunch`)
 		return await response.json()
 	} catch (error) {
 		console.error('Error fetching data:', error)
@@ -22,7 +20,7 @@ export const loadUsers = async () => {
 
 export const loadUsersWithLunchOut = async () => {
 	try {
-		const response = await fetch(`http://127.0.0.1:8000/users/WithLunchOut`)
+		const response = await fetch(`http://127.0.0.1:8000/users/lunch`)
 		return await response.json()
 	} catch (error) {
 		console.error('Error fetching data:', error)
@@ -32,7 +30,7 @@ export const loadUsersWithLunchOut = async () => {
 
 export const getLunchesOut = async () => {
 	try {
-		const response = await fetch(`http://127.0.0.1:8000/lunches/count/out`)
+		const response = await fetch(`http://127.0.0.1:8000/lunches/out/total`)
 		return await response.json()
 	} catch (error) {
 		console.error('Error fetching data:', error)
@@ -42,7 +40,7 @@ export const getLunchesOut = async () => {
 
 export const getLunchesRest = async () => {
 	try {
-		const response = await fetch(`http://127.0.0.1:8000/lunches/count/rest`)
+		const response = await fetch(`http://127.0.0.1:8000/lunches/rest/total`)
 		return await response.json()
 	} catch (error) {
 		console.error('Error fetching data:', error)
@@ -54,13 +52,17 @@ export const getLunchesRest = async () => {
 
 export const uploadUser = async (id, name, grade) => {
 	try {
-		const response = await fetch(`http://127.0.0.1:8000/create/user`, {method: 'POST',
+		const response = await fetch(`http://127.0.0.1:8000/users`, {
+			method: 'POST',
 			headers: {
 				'accept' : 'application/json',
 				'Content-Type': 'application/json'
 			}, body: JSON.stringify({id: id, name:name, grade:grade,lunches:[]})
 		})
-		return await response.json()
+		if (response.ok) {
+			return await response.json()
+		}
+		return null
 	} catch (error) {
 		console.error('Error fetching data:', error)
 		return null
@@ -69,7 +71,7 @@ export const uploadUser = async (id, name, grade) => {
 
 export const getUsersCount = async () => {
 	try {
-		const response = await fetch(`http://127.0.0.1:8000/users/count`)
+		const response = await fetch(`http://127.0.0.1:8000/users/total`)
 		return await response.json()
 	} catch (error) {
 		console.error('Error fetching data:', error)
@@ -79,10 +81,13 @@ export const getUsersCount = async () => {
 
 export const deletUser = async (id) => {
 	try {
-		const response = await fetch(`http://127.0.0.1:8000/user/delete/${id}`, {
+		const response = await fetch(`http://127.0.0.1:8000/users/${id}`, {
 			method: 'DELETE'
 		})
-		return await response.json()
+		if (response.ok) {
+			return await response.json()
+		}
+		return null
 	} catch (error) {
 		console.error('Error fetching data:', error)
 		return null
@@ -91,7 +96,7 @@ export const deletUser = async (id) => {
 
 export const deleteGrade = async (grade) => {
 	try {
-		const response = await fetch(`http://127.0.0.1:8000/user/delete/by/grade/${grade}`, {
+		const response = await fetch(`http://127.0.0.1:8000/user/grade/${grade}`, {
 			method: 'DELETE'
 		})
 		return await response.json()
@@ -103,7 +108,7 @@ export const deleteGrade = async (grade) => {
 
 export const getUserName= async (id) => {
 	try {
-		const response = await fetch(`http://127.0.0.1:8000/user/name/${id}`)
+		const response = await fetch(`http://127.0.0.1:8000/users/${id}/name`)
 		return await response.json()
 	} catch (error) {
 		console.error('Error fetching data:', error)
@@ -113,7 +118,7 @@ export const getUserName= async (id) => {
 
 export const createUsers = async (data) => {
 	try {
-		const response = await fetch('http://127.0.0.1:8000/create/users', {
+		const response = await fetch('http://127.0.0.1:8000/users', {
 			method: 'POST',
 			headers: {
 				'accept': 'application/json',

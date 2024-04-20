@@ -1,8 +1,8 @@
 <script>
 	import { getUsersCount } from '$lib/ApiService.js';
 	import { onMount } from 'svelte';
-	import '../styles/global.css';
-	import page from '$lib/page.js';
+	import '../../styles/global.css';
+
 	let count = 0;
 
 
@@ -10,24 +10,22 @@
 		loadCount();
 	});
 
-	$: loadCount()
 
 	let currentDate = new Date();
 	let [month, day, year] = currentDate.toLocaleDateString().split('/');
 	currentDate = `${day}/${month}/${year}`;
 	const loadCount = async () => {
 		count = await getUsersCount();
+		console.log(count)
 	};
-
+	$: {
+		loadCount();
+	}
 </script>
 
 <div class="flex-container">
 	<div class="item-1 item">
-		{#if $page === "Žáci"}
-			<p>Žáci v systému</p>
-		{:else}
-			<p>Třídy v systému</p>
-		{/if}
+		<p>Žáci v systému</p>
 	</div>
 	<div class="item-2 item">
 		<p>•</p>
