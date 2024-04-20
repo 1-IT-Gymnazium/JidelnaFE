@@ -66,10 +66,10 @@ In the `login` function of the Svelte Login Component, error handling is done us
 
 3. **Promise Rejection Catch:** If an error is thrown at any point during the execution of the Promise chain (like network failure, issue with parsing response to JSON, etc.), it will be caught in the `.catch` block. In the catch block, the error is assigned to the `currentError` variable and also logged to the console.
 
-    ```javascript
-    .catch((error) => {
-        currentError = error;
-        console.log('Error logging in: ', currentError);
+    ```
+    catch((error) => {
+    currentError = error;
+    console.log('Error logging in: ', currentError);
     });
     ```
 ##### Note:
