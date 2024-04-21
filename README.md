@@ -80,10 +80,23 @@ It's important to note that this error handling strategy doesn't differentiate b
 ## Source Code
 All source code is stored on GitHub at [GitHub Repository](https://github.com/vendeliin/JidelnaBackEnd.git).
 
+## Interacting with the app
+
+### To use the výdejový panel you have two options
+- Connect the RFID scanner, and scan ISIC card with a user who is saved in the db.
+- For just testing the app, be in the window of the app and just type number of an testing id, then click enter, every time enter is clicked it will use the api endpoint.
+
+### How to use administrátorsá sekce
+- First of all you have to login to be able to work in the admin section, login credentials for testing are: `Uživatelské jméno: admin, Heslo: admin`
+- If you want to upload users with the xlxs file, just keep in mind how the content of the file should be organized: ![Alternative text for the image](/static/xlxs.jpeg)
+- The rest of the app is self explanatory
+
+
 ## Technologies Used
 - Svelte
 - SvelteKit
 - JS
+- Docker
 
 ## Sources
 - [Svelte Documentation](https://svelte.dev/docs/introduction)
