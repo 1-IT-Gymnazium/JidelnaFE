@@ -18,7 +18,7 @@
 
 	<div class="grid-container-1">
 		<div class="item-1-1">
-			<img src="../../../static/1itglogo.png" alt="ITlogo">
+			<img src="/1itglogo.png" alt="ITlogo">
 		</div>
 		<div class="item-1-2">
 			<p>Administrátorská <br> sekce</p>

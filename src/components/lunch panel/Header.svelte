@@ -18,7 +18,7 @@
 	</div>
 
 	<div class="item-3">
-		<img src="../../../static/1itglogo.png" alt="ITlogo">
+		<img src="/1itglogo.png" alt="ITlogo">
 	</div>
 </div>
 

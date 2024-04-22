@@ -8,7 +8,7 @@
 
 	<div class="grid-container">
 		<div class="header">
-			<img class="item-1" src="../../../static/1itglogo.png" alt="ITlogo">
+			<img class="item-1" src="/1itglogo.png" alt="ITlogo">
 		</div>
 
 		<div class="grid-container-2">

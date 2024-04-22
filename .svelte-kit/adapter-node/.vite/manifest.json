@@ -1,0 +1,104 @@
+{
+  ".svelte-kit/generated/server/internal.js": {
+    "file": "internal.js",
+    "src": ".svelte-kit/generated/server/internal.js",
+    "isEntry": true,
+    "imports": [
+      "_internal.js"
+    ]
+  },
+  "_exports.js": {
+    "file": "chunks/exports.js"
+  },
+  "_global.js": {
+    "file": "_app/immutable/assets/global.CmJ7r3HC.css",
+    "src": "_global.js"
+  },
+  "_index.js": {
+    "file": "chunks/index.js",
+    "imports": [
+      "_ssr.js"
+    ]
+  },
+  "_internal.js": {
+    "file": "chunks/internal.js",
+    "imports": [
+      "_ssr.js"
+    ]
+  },
+  "_ssr.js": {
+    "file": "chunks/ssr.js"
+  },
+  "node_modules/@sveltejs/kit/src/runtime/components/error.svelte": {
+    "file": "entries/fallbacks/error.svelte.js",
+    "src": "node_modules/@sveltejs/kit/src/runtime/components/error.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_exports.js"
+    ]
+  },
+  "node_modules/@sveltejs/kit/src/runtime/components/layout.svelte": {
+    "file": "entries/fallbacks/layout.svelte.js",
+    "src": "node_modules/@sveltejs/kit/src/runtime/components/layout.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ]
+  },
+  "node_modules/@sveltejs/kit/src/runtime/server/index.js": {
+    "file": "index.js",
+    "src": "node_modules/@sveltejs/kit/src/runtime/server/index.js",
+    "isEntry": true,
+    "imports": [
+      "_internal.js",
+      "_exports.js",
+      "_index.js"
+    ]
+  },
+  "src/routes/+page.svelte": {
+    "file": "entries/pages/_page.svelte.js",
+    "src": "src/routes/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.DlrVEINg.css",
+      "_app/immutable/assets/global.CmJ7r3HC.css"
+    ],
+    "assets": [
+      "_app/immutable/assets/1itBudova.CpvtcaiL.jpeg"
+    ]
+  },
+  "src/routes/admin/+page.svelte": {
+    "file": "entries/pages/admin/_page.svelte.js",
+    "src": "src/routes/admin/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_index.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.CCU6CwGE.css",
+      "_app/immutable/assets/global.CmJ7r3HC.css"
+    ]
+  },
+  "src/routes/lunches/+page.svelte": {
+    "file": "entries/pages/lunches/_page.svelte.js",
+    "src": "src/routes/lunches/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_index.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.6xDZAxQi.css",
+      "_app/immutable/assets/global.CmJ7r3HC.css"
+    ]
+  },
+  "static/1itBudova.jpeg": {
+    "file": "_app/immutable/assets/1itBudova.CpvtcaiL.jpeg",
+    "src": "static/1itBudova.jpeg"
+  }
+}

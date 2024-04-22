@@ -48,8 +48,10 @@
 
 	const handleIsic = async (e) => {
 		if (e.key === 'Enter') {
+			if (isicId !== '') {
+				data = await loadUser(isicId);
+			}
 
-			data = await loadUser(isicId);
 
 			users = await loadUsers();
 			susUsers = await loadUsersWithLunchOut();
@@ -60,7 +62,7 @@
 			countOut.set(countO);
 			susUser = '';
 
-			if (data !== 0) {
+			if (data) {
 
 				// if user tries to scan isic second time, it will show in the table of scanned users
 				if (susUsers.length > 0) {
@@ -84,7 +86,7 @@
 				if (lunch.lunch_out === 2) {
 					lunchOut = 1;
 				}
-				if (typeOfLunch === 0) {
+				if (typeOfLunch === 0 || lunch === undefined) {
 					typeOfLunch = 'Nemá obědnaný oběd.';
 					lunchOut = 0;
 				}
@@ -116,7 +118,7 @@
 				<p class="item-name">{name}</p>
 
 			</div>
-		{:else if data === 0}
+		{:else if data === 0 || data === null}
 			<div class="item-info-3 item-info">
 				<p>Žák neexistuje</p>
 			</div>
