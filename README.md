@@ -91,6 +91,10 @@ All source code is stored on GitHub at [GitHub Repository](https://github.com/ve
 - If you want to upload users with the xlxs file, just keep in mind how the content of the file should be organized: ![Alternative text for the image](/static/xlxs.jpeg)
 - The rest of the app is self explanatory
 
+## Docker images
+-[Backend](https://hub.docker.com/repository/docker/vendelinn/api/general)
+-[Frontend](https://hub.docker.com/repository/docker/vendelinn/sveltekit/general)
+
 
 ## Technologies Used
 - Svelte
